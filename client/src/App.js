@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import Header from './components/header';
+import Footer from './components/footer';
+import Index from './pages/index/index';
+import Login from './pages/login/index';
+import Signup from './pages/signup/index';
 class App extends Component {
   render() {
     return (
@@ -11,6 +15,8 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={Index} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
             </Switch>
             <Footer />
           </Center>

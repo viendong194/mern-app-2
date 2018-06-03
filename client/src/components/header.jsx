@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import white from '@material-ui/core/colors/purple';
+import Auth from '../Auth.js';
 
 class Header extends React.Component{
   render(){
@@ -13,13 +13,12 @@ class Header extends React.Component{
       
         <AppBar className={classes.container}>
            <div>
-                <Button component={Link} to="/login" className={classes.button}>Sign In</Button>
-                <Button component={Link} to="/signup" className={classes.button}>Sign up</Button>
-                <Button component={Link} to="/comments" className={classes.button}>Comments</Button>
-                <Button component={Link} to="/profile" className={classes.button}>Profile</Button>
+              {!Auth.isUserAuthenticated() && <Button component={Link} to="/login" className={classes.button}>Sign In</Button>}
+              {!Auth.isUserAuthenticated() && <Button component={Link} to="/signup" className={classes.button}>Sign up</Button>}
+              {Auth.isUserAuthenticated() && <Button component={Link} to="/profile" className={classes.button}>Profile</Button>}
+              {/* <Button component={Link} to="/comments" className={classes.button}>Comments</Button> */}
            </div>
         </AppBar>
-    
     )
   }
 }
@@ -27,8 +26,7 @@ export default withStyles(styles)(Header);
 
 const styles = theme => ({
     button: {
-      margin: theme.spacing.unit,
-      color: white
+      margin: theme.spacing.unit
     },
     input: {
       display: 'none',

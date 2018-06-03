@@ -11,16 +11,15 @@ class SignUpForm extends React.Component{
   render(){
       return(
         <Card className="container">
-            <form action="/" onSubmit={this.props.onSubmit}>
+            <form action="/auth/signup" onSubmit={this.props.onSubmit}>
             <H2>Sign Up</H2>
 
-            {this.props.errors.summary && <p className="error-message">{this.props.errors.summary}</p>}
-
+        
             <Center>
                 <TextField
-                    label="Name"
+                    label={this.props.errors.name || 'Name'}
                     name="name"
-                    error={this.props.errors.name}
+                    error={this.props.errors.name && true}
                     onChange={this.props.onChange}
                     value={this.props.user.name}
                 />
@@ -28,9 +27,9 @@ class SignUpForm extends React.Component{
 
             <Center>
                 <TextField
-                    label="Email"
+                    label={this.props.errors.email || 'Email'}
                     name="email"
-                    error={this.props.errors.email}
+                    error={this.props.errors.email && true}
                     onChange={this.props.onChange}
                     value={this.props.user.email}
                 />
@@ -38,11 +37,11 @@ class SignUpForm extends React.Component{
 
             <Center>
                 <TextField
-                    label="Password"
+                    label={this.props.errors.password ||'Password'}
                     type="password"
                     name="password"
                     onChange={this.props.onChange}
-                    error={this.props.errors.password}
+                    error={this.props.errors.password && true}
                     value={this.props.user.password}
                 />
             </Center>
@@ -51,7 +50,6 @@ class SignUpForm extends React.Component{
                 <Button type="submit">Create New Account</Button>
                 <CardContent>Already have an account? <Link to={'/login'}>Log in</Link></CardContent>
             </Center>
- 
            
             </form>
         </Card>

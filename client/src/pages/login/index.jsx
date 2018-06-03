@@ -1,7 +1,7 @@
 import React from 'react';
 import SignInForm from './loginForm.jsx';
 import styled from 'styled-components';
-
+import Auth from '../../Auth'
 
 class Index extends React.Component {
 
@@ -38,9 +38,24 @@ class Index extends React.Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
-    console.log('name:', this.state.user.name);
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
+    
+
+    const { name, email, password } = this.state.user;
+    
+    fetch('/auth/login/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({name, email, password})
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) {
+        this.setState({ errors: res.errors });
+      }
+      else{
+        Auth.authenticateUser(res.token);
+        this.setState({ errors: null });
+        console.log(res.token);
+      } 
+    });
   }
 
   /**

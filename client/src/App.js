@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import Index from './pages/index/index';
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
+import Profile from './pages/profile/index'
 class App extends Component {
   render() {
     return (
@@ -17,6 +18,7 @@ class App extends Component {
               <Route exact path="/" component={Index} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
+              <Route path="/profile" component={Profile} />
             </Switch>
             <Footer />
           </Center>

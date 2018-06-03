@@ -38,9 +38,22 @@ class Index extends React.Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
 
-    console.log('name:', this.state.user.name);
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
+   
+
+    const { name, email, password } = this.state.user;
+   
+    fetch('/auth/signup/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password})
+    }).then(res => res.json()).then((res) => {
+      if (!res.success) {
+        this.setState({ errors: res.errors });
+      }else {
+        this.setState({ errors: null });
+        this.context.router.replace('/login');
+      }
+    });
   }
 
   /**

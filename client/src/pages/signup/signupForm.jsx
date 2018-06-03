@@ -17,9 +17,9 @@ class SignUpForm extends React.Component{
         
             <Center>
                 <TextField
-                    label={this.props.errors.name || 'Name'}
+                    label={this.props.errors && this.props.errors.name || 'Name'}
                     name="name"
-                    error={this.props.errors.name && true}
+                    error={this.props.errors && this.props.errors.name && true}
                     onChange={this.props.onChange}
                     value={this.props.user.name}
                 />
@@ -27,9 +27,9 @@ class SignUpForm extends React.Component{
 
             <Center>
                 <TextField
-                    label={this.props.errors.email || 'Email'}
+                    label={this.props.errors && this.props.errors.email || 'Email'}
                     name="email"
-                    error={this.props.errors.email && true}
+                    error={this.props.errors && this.props.errors.email && true}
                     onChange={this.props.onChange}
                     value={this.props.user.email}
                 />
@@ -37,11 +37,11 @@ class SignUpForm extends React.Component{
 
             <Center>
                 <TextField
-                    label={this.props.errors.password ||'Password'}
+                    label={this.props.errors && this.props.errors.password ||'Password'}
                     type="password"
                     name="password"
                     onChange={this.props.onChange}
-                    error={this.props.errors.password && true}
+                    error={this.props.errors && this.props.errors.password && true}
                     value={this.props.user.password}
                 />
             </Center>

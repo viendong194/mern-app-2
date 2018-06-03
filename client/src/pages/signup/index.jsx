@@ -48,10 +48,12 @@ class Index extends React.Component {
       body: JSON.stringify({ name, email, password})
     }).then(res => res.json()).then((res) => {
       if (!res.success) {
+        console.log(res);
         this.setState({ errors: res.errors });
       }else {
+        console.log(res.message);
         this.setState({ errors: null });
-        this.context.router.replace('/login');
+        this.props.history.push('/login');
       }
     });
   }

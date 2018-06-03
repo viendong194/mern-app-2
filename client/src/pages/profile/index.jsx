@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from '../../Auth';
 import Dashboard from './dashboard.jsx';
-
+import styled from 'styled-components';
 
 class Index extends React.Component {
 
@@ -20,12 +20,13 @@ class Index extends React.Component {
    * This method will be executed after initial rendering.
    */
   componentDidMount() {
-    fetch('/api/dashboard/', {
+    fetch('/api/dashboard', {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json','Authorization':`bearer ${Auth.getToken()}` }
+        headers: { 'Content-Type': 'application/json','authorization':`bearer ${Auth.getToken()}` }
       }).then(res => res.json()).then((res) => {
         if (!res.success) {
           this.setState({ secretData: '' });
+          this.props.history.push('/login');
         }
         else{
           this.setState({ secretData: res.message  });
